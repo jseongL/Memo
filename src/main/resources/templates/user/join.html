@@ -1,0 +1,89 @@
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default}">
+        
+       
+       <section layout:fragment="contents" class="contents d-flex justify-content-center">
+			<div class="user-box my-5 p-5 rounded-lg">
+				<h1 class="text-center">회원가입</h1>
+				<input id="loginIdInput" type="text" class="form-control mt-4" placeholder="아이디">
+				<input id="passwordInput" type="password" class="form-control mt-2" placeholder="비밀번호">
+				<input id="passwordConfirmInput" type="password" class="form-control mt-2" placeholder="비밀번호 확인">
+				<input id="nameInput" type="text" class="form-control mt-2" placeholder="이름">
+				<input id="emailInput" type="text" class="form-control mt-2" placeholder="이메일">
+				<button id="joinBtn" type="button" class="btn btn-secondary btn-block mt-3">가입</button>
+				
+			</div>
+		</section>
+        
+        
+        
+        
+        <script layout:fragment="script">
+        	$(function(){
+        		$("#joinBtn").on("click", function(){
+        			let loginIdInput = $("#loginIdInput").val();
+        			let passwordInput = $("#passwordInput").val();
+        			let passwordConfirmInput = $("#passwordConfirmInput").val();
+        			let nameInput = $("#nameInput").val();
+        			let emailInput = $("#emailInput").val();
+        			
+        			if(loginIdInput == ""){
+        				alert("아이디를 입력하세요");
+        				return;
+        			}
+        			if(passwordInput == ""){
+        				alert("비밀번호를 입력하세요");
+        				return;
+        			}
+        			if(passwordInput != passwordConfirmInput){
+        				alert("비밀번호가 같지 않습니다");
+        				return;
+        			}
+        			if(nameInput == ""){
+        				alert("이름을 입력하세요");
+        				return;
+        			}
+        			if(emailInput == ""){
+        				alert("이메일을 입력하세요");
+        				return;
+        			}
+        			
+        			
+        			$.ajax({
+        				type:`post`
+        				,url:"/user/join"
+        				,data:{"loginId":loginIdInput,"password":passwordInput,"name":nameInput,"email":emailInput}
+        				,success:function(response){
+        					if(response.result == "success"){
+        						location.href = "/user/login-view";
+        					}
+        					else{
+        						alert("회원가입 실패");
+        					}
+        				}
+        				,error:function(){
+        					alert("회원가입 에러");
+        				}
+        			});
+        			
+        			
+        			
+        		});
+        	});
+        
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+</html>
