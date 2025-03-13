@@ -3,6 +3,8 @@ package com.jsL.memo.user.repository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.jsL.memo.user.domain.User;
+
 @Mapper
 public interface UserRepository {
 
@@ -11,6 +13,12 @@ public interface UserRepository {
 			@Param("password")String password,
 			@Param("name")String name,
 			@Param("email")String email
+			);
+	
+	
+	public User selectUser(
+			@Param("loginId")String loginId
+			,@Param("password")String password
 			);
 	
 }

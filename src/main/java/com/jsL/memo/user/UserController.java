@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jsL.memo.user.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -25,8 +28,15 @@ public class UserController {
 	
 	
 	
-	
-	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request){
+		HttpSession session =  request.getSession();
+		
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		
+		return "redirect:/user/login-view";
+	}
 	
 	
 	
