@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jsL.memo.post.service.PostService;
 
@@ -28,6 +29,7 @@ public class PostRestController {
 			@RequestParam String title
 			,@RequestParam String contents
 			,HttpSession session
+			,@RequestParam(required=false) MultipartFile imgPath // 비필수
 			){
 		
 		int userId = (Integer)session.getAttribute("userId");
@@ -35,7 +37,7 @@ public class PostRestController {
 		Map<String, String>resultMap = new HashMap<>();
 		
 	
-		if(postService.addPost(userId, title, contents)) {
+		if(postService.addPost(userId, title, contents, imgPath)) {
 			resultMap.put("result", "success");
 		}
 		else {
@@ -43,6 +45,8 @@ public class PostRestController {
 		}
 		return resultMap;
 	}
+	
+	
 	
 	
 	

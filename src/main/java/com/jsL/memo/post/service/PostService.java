@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.jsL.memo.FileManager;
 import com.jsL.memo.post.domain.Post;
 import com.jsL.memo.post.repository.PostRepository;
 
@@ -20,12 +22,15 @@ public class PostService {
 	
 	
 	
-	public boolean addPost(int userId, String title, String contents){
+	public boolean addPost(int userId, String title, String contents, MultipartFile file){
+		
+		String urlPath = FileManager.saveFile(userId, file);
 		
 		Post post = Post.builder()
 		.userId(userId)
 		.title(title)
 		.contents(contents)
+		.imgPath(urlPath)
 		.build();
 		
 		try {

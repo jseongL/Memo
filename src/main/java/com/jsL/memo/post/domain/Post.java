@@ -31,56 +31,14 @@ public class Post {
 	private int userId;
 	private String title;
 	private String contents;
-//	@Column(name="imgPath")
-//	private String imgPath;
+	@Column(name="imgPath")
+	private String imgPath;
 	@CreationTimestamp
 	@Column(name="createdAt")
 	private LocalDateTime createdAt;
 	@UpdateTimestamp
 	@Column(name="updatedAt")
 	private LocalDateTime updatedAt;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-//	public String getImgPath() {
-//		return imgPath;
-//	}
-//	public void setImgPath(String imgPath) {
-//		this.imgPath = imgPath;
-//	}
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 	
 
 }
