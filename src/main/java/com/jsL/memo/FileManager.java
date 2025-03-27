@@ -76,5 +76,46 @@ public class FileManager {
 	
 	
 	}
-	//  /imges/
+	
+	//파일 삭제 기능
+	public static boolean removeFile(String imgPath){ // /images/2_1742384971937
+		
+		
+		
+		if(imgPath == null) {//이미지가 없을 때
+			return false;
+		}
+		
+		String fullFillPath = FILE_UPLOAD_PATH + imgPath.replace("/images", "");
+		
+		Path path = Paths.get(fullFillPath);
+	//"C:\\Users\\user\\Desktop\\jh\\project\\upload\\memo_5423423/text.png";
+		
+		Path directoryPath = path.getParent();//파일을 저장하고 있는 상위 정보
+		
+		
+		try {
+			Files.delete(path);
+			Files.delete(directoryPath);
+		} catch (IOException e) {
+			
+			return false;
+		}
+		
+		
+		
+		return true;
+		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//  /imges/
+}

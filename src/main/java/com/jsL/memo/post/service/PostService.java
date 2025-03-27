@@ -87,9 +87,23 @@ public class PostService {
 	public boolean deletePost(int id){
 		//조회먼저
 		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		
+		
+		
+		
+		
 		if(optionalPost.isPresent()){//없는 경우 대비
 			
 			Post post = optionalPost.get();
+			
+			
+		
+			post.getImgPath();
+			
+			FileManager.removeFile(post.getImgPath());
+			
+			
 			
 			try {
 				postRepository.delete(post);
